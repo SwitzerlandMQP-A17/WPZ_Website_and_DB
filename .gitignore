@@ -1,0 +1,6 @@
+/export/
+/server.js
+*__pycache__*
+*node_modules*
+*.xl*
+*.log

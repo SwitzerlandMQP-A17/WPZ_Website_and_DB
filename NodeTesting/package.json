@@ -1,0 +1,22 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "NTB Testing",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "*",
+    "bootstrap": "^4.0.0-beta",
+    "ejs": "^2.5.7",
+    "express": "*",
+    "express-session": "^1.15.5",
+    "express-validator": "^4.1.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "mysql": "^2.14.1",
+    "python-shell": "^0.4.0",
+    "validator": "^8.1.0",
+    "winston": "^2.3.1"    
+  },
+  "author": "KMS",
+  "license": "ISC"
+}

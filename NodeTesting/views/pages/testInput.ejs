@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+        <div class="container mb-3 px-3">
+            <div class="card">            
+                <div class="card-header" role="tab" id="heading">
+                    <p class="mb-0">Eingaben Sie ein neues Prüfresultat</p>
+                </div>
+                <div class="card-block p-3">
+                    <div id="uploadTestResultForm">
+                        <label for="visibility" class="mb-0">Sichtbar</label>
+                        <div class="input-group mb-3">
+                            <label class="custom-control custom-radio">
+                                <input value="1" id="visibleYes" name="visible" type="radio" class="custom-control-input" checked>
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Ja</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <input value="0" id="visibleNo" name="visible" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Nein</span>
+                            </label>
+                        </div>
+                        
+                        <div class="container mb-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="heatpumpTypeSelect" class="mb-0">*Kategorie</label>
+                                        <select name="heatpumpTypeSelect" class="form-control">
+                                            <% for(var i = 0; i < queryResults[0].length; i++){ %>
+                                                <option value="<%= queryResults[0][i].KategorieID %>"><%= queryResults[0][i].Kategorie_Bezeichnung_DE %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="heatingTypeSelect" class="mb-0">*Heizungstyp</label>
+                                        <select name="heatingTypeSelect" class="form-control">
+                                            <% for(var i = 0; i < queryResults[1].length; i++){ %>
+                                                <option value="<%= queryResults[1][i].HeizungstypID %>"><%= queryResults[1][i].Heizungstyp_Bezeichnung_DE %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container mb-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="customerSelect" class="mb-0">*Auftraggeber</label>
+                                        <select name="customerSelect" class="form-control">
+                                            <% for(var i = 0; i < queryResults[2].length; i++){ %>
+                                                <option value="<%= queryResults[2][i].AuftraggeberID %>"><%= queryResults[2][i].Auftraggeber %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="heatpumpModel" class="mb-0">*Gerät</label>
+                                        <input name="heatpumpModel" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="heatpumpModelPart2" class="mb-0">Gerät 2 (falls vorhanden)</label>
+                                        <input name="heatpumpModelPart2" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container mb-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="testNumber" class="mb-0">*Prüfnummer</label>
+                                        <input name="testNumber" type="text" class="form-control" placeholder="###-##-##">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="bauartSelect" class="mb-0">Bauart</label>
+                                        <select name="bauartSelect" class="form-control">
+                                            <% for(var i = 0; i < queryResults[3].length; i++){ %>
+                                                <option value="<%= queryResults[3][i].BauartID %>"><%= queryResults[3][i].Bauart_Bezeichnung_DE %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="productTypeSelect" class="mb-0">Produktart</label>
+                                        <select name="productTypeSelect" class="form-control">
+                                            <option value="">Auswählen...</option>
+                                            <option value="S">Serienprodukt</option>
+                                            <option value="P">Prototyp</option>
+                                            <option value="E">Einzelanfertigung</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="container mb-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="refrigerantType1" class="mb-0">*Kältemittel 1</label>
+                                        <input name="refrigerantType1" type="text" class="form-control mb-2" placeholder="Kältemittel">
+                                        <input name="refrigerantType1Amount" type="text" class="form-control" placeholder="Kältemittelmenge (kg)">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="refrigerantType2" class="mb-0">Kältemittel 2</label>
+                                        <input name="refrigerantType2" type="text" class="form-control mb-2" placeholder="Kältemittel">
+                                        <input name="refrigerantType2Amount" type="text" class="form-control" placeholder="Kältemittelmenge (kg)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="container mb-3">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="outdoorSoundLevel" class="mb-0">Schall aussen</label>
+                                        <input name="outdoorSoundLevel" type="text" class="form-control mb-2" placeholder="dB">
+                                        <input name="outdoorSoundLevelType" type="text" class="form-control mb-2" placeholder="Schall aussen Prüfpunkt">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="form-group mb-3">
+                                        <label for="indoorSoundLevel" class="mb-0">Schall innen</label>
+                                        <input name="indoorSoundLevel" type="text" class="form-control mb-2" placeholder="dB">
+                                        <input name="indoorSoundLevelType" type="text" class="form-control mb-2" placeholder="Schall innen Prüfpunkt">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container mb-3 border p-3">
+                            <label for="dataPoints" class="mb-0">*Prüfbedingungen</label>
+                            <div id="dataPointContainer" class="container pl-0 pr-0 mb-3">
+                                <div class="row mb-3">
+                                    <div class="col-sm-2">
+                                        <select id="testConditionSelect" class="form-control">
+                                            <% for(var i = 0; i < queryResults[5].length; i++){ %>
+                                                <option value="<%= queryResults[5][i].BedingungID %>"><%= queryResults[5][i].Bedingung %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2"><input id="heatCapacity" type="text" class="form-control" placeholder="*(kW) Heizleistung"></div>
+                                    <div class="col-sm-2"><input id="inputPower" type="text" class="form-control" placeholder="*(kW) Leistungsaufnahme"></div>
+                                    <div class="col-sm-2"><input id="cop" type="text" class="form-control" placeholder="*COP"></div>
+                                    <div class="col-sm-3"><input id="humidity" type="text" class="form-control" placeholder="(%r.h.) Luftfeuchtigkeit"></div>
+                                    <div class="col-sm"><a href="" class="deleteBedingungRow"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+                                </div>
+                            </div>
+
+                            <button id="insertTestCondition" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Einfügen</button>
+                        </div>
+
+
+                        <div class="container mb-3">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="col px-0">
+                                        <div class="form-group mb-3">
+                                            <label for="volumeFlowNorm" class="mb-0">Volumenstrom Norm</label>
+                                            <input name="volumeFlowNorm" type="text" class="form-control" placeholder="m^3/Std.">
+                                        </div>    
+                                    </div>
+                                    <div class="col px-0">
+                                        <div class="form-group mb-3">
+                                            <label for="volumeFlow35" class="mb-0">Volumenstrom V35</label>
+                                            <input name="volumeFlow35" type="text" class="form-control" placeholder="m^3/Std.">
+                                        </div>    
+                                    </div>
+                                    <div class="col px-0">
+                                        <div class="form-group mb-3">
+                                            <label for="volumeFlow45" class="mb-0">Volumenstrom V45</label>
+                                            <input name="volumeFlow45" type="text" class="form-control" placeholder="m^3/Std.">
+                                        </div>
+                                    </div>
+                                    <div class="col px-0">
+                                        <div class="form-group mb-3">
+                                            <label for="volumeFlow55" class="mb-0">Volumenstrom V55</label>
+                                            <input name="volumeFlow55" type="text" class="form-control" placeholder="m^3/Std.">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group mb-3">
+                                        <label for="bivalence" class="mb-0">Bivalenzpunkt</label>
+                                        <input name="bivalence" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="scop" class="mb-0">SCOP</label>
+                                        <input name="scop" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <label for="notes" class="mb-0">Bemerkungen</label>
+                                        <input name="notes" type="text" class="form-control">
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="testStandardCheckbox" class="mb-0">*Prüfnormen</label>
+                                    <div class="form-group mb-3" id="normCheckboxWrapper">
+                                    <% for(var i = 0; i < queryResults[4].length; i++){ %>
+                                        <label class="custom-control custom-checkbox">
+                                          <input type="checkbox" class="custom-control-input" value="<%= queryResults[4][i].NormID %>">
+                                          <span class="custom-control-indicator"></span>
+                                          <span class="custom-control-description"><%= queryResults[4][i].Norm %></span>
+                                        </label>
+                                    <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="uploadTestResultButton" type="submit" class="btn btn-primary">Senden <i class="fa fa-caret-right" aria-hidden="true"></i></button>                        
+                        <div id="testInputErrorAlert" class="mt-3">
+                             <div class="alert alert-danger" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Gab es ein Problem mit Ihrer Anfrage. Bitte überprüfen Sie die erforderte Eingaben und versuchen Sie weiter.
+                                <br><br>
+                            </div>
+                        </div>
+                        <div id="testInputSuccessAlert" class="mt-3">
+                            <div class="alert alert-success" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Ihre Anfrage wurde erfolg.
+                                <br><br>
+                                <a href="/pruefresultate"><button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Anderes Resultat</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>

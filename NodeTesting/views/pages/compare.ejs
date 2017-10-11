@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+		<div class="container mb-3">
+			<h1 data-i18n="Website-Title" class="display-4"></h1>
+			<br>
+			<hr>
+			<% if(typeof queryResults == 'undefined'){ %>
+				<p data-i18n="Comparison-Empty"></p>
+			<% } else { %>
+
+				<% var numHeatPumps = 0; %>
+				<% for(var i = 0; i < queryResults.length - 1; i++){ %>
+					<% if(typeof queryResults[i][0].Auftraggeber != 'undefined'){ %>
+						<% numHeatPumps++; %>
+					<% } %>
+				<% } %>
+
+				<div id="comparisonTableWrapper">
+					<table class="table-bordered table table-responsive table-striped">
+						<thead>
+							<tr>
+								<th></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<td><span class="customerName"><%= queryResults[i][0].Auftraggeber %></span><br><%= queryResults[i][0].Geraet %></td>	
+								<% } %>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th data-i18n="Heating-Type" scope="row">Heizungstyp</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(typeof queryResults[i][0].Heizungstyp_Bezeichnung_DE != 'undefined'){ %>
+										<td>
+											<span class="descriptionDE"><%= queryResults[i][0].Heizungstyp_Bezeichnung_DE %></span>
+											<span class="descriptionEN"><%= queryResults[i][0].Heizungstyp_Bezeichnung_EN %></span>
+										</td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr>
+								<th data-i18n="Test-Number" scope="row"></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(typeof queryResults[i][0].Pruefnummer != 'undefined'){ %>
+										<td><a href="/pruefresultate/<%= queryResults[i][0].Pruefnummer %>/<%= queryResults[i][0].InfoID %>/" target="_blank"><%= queryResults[i][0].Pruefnummer %></a></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="refrigerantType1CompareRow">
+								<th scope="row"><span data-i18n="Refrigerant"></span> #1</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(typeof queryResults[i][0].Kaeltemittel_Typ1 != 'undefined'){ %>
+										<td><%= queryResults[i][0].Kaeltemittel_Typ1 %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="refrigerantType1AmountCompareRow">
+								<th scope="row"><span data-i18n="Refrigerant-Capacity"></span> #1 (kg)</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(typeof queryResults[i][0].Kaeltemittelmenge_Typ1 != 'undefined'){ %>
+										<td><%= queryResults[i][0].Kaeltemittelmenge_Typ1 %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="refrigerantType2CompareRow">
+								<th scope="row"><span data-i18n="Refrigerant"></span> #2</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(typeof queryResults[i][0].Kaeltemittel_Typ2 != 'undefined'){ %>
+										<td><%= queryResults[i][0].Kaeltemittel_Typ2 %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="refrigerantType2AmountCompareRow">
+								<th scope="row"><span data-i18n="Refrigerant-Capacity"></span> #2 (kg)</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(typeof queryResults[i][0].Kaeltemittelmenge_Typ2 != 'undefined'){ %>
+										<td><%= queryResults[i][0].Kaeltemittelmenge_Typ2 %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="outdoorSoundCompareRow">
+								<th scope="row"><span data-i18n="Outdoor-Sound"></span> (dBA)</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].Schall_Aussen > 0){ %>
+										<td><%= queryResults[i][0].Schall_Aussen %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="outdoorSoundConditionCompareRow">
+								<th scope="row"><span data-i18n="Outdoor-Sound-Condition"></span> (dBA)</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].Schall_Aussen_Bedingung > 0){ %>
+										<td><%= queryResults[i][0].Schall_Aussen_Bedingung %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="indoorSoundCompareRow">
+								<th scope="row"><span data-i18n="Indoor-Sound"></span> (dBA)</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].Schall_Innen > 0){ %>
+										<td><%= queryResults[i][0].Schall_Innen %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="indoorSoundConditionCompareRow">
+								<th scope="row"><span data-i18n="Indoor-Sound-Condition"></span> (dBA)</th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].Schall_Innen_Bedingung > 0){ %>
+										<td><%= queryResults[i][0].Schall_Innen_Bedingung %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr>
+								<th scope="row"><span data-i18n="Heat-Capacity"></span> (kW)<br><span class="conditionCompareLabel"><span data-i18n="At"></span> (<%= queryResults[0][0].Bedingung %>)</span></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].Heizleistung > 0){ %>
+										<td><%= queryResults[i][0].Heizleistung.toFixed(1) %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<th scope="row"><span data-i18n="Power-Consumption"></span> (kW)<br><span class="conditionCompareLabel"><span data-i18n="At"></span> (<%= queryResults[0][0].Bedingung %>)</span></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].Leistungsaufnahme > 0){ %>
+										<td><%= queryResults[i][0].Leistungsaufnahme.toFixed(1) %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr>
+								<th scope="row"><span data-i18n="COP"></span> <br><span class="conditionCompareLabel"><span data-i18n="At"></span> (<%= queryResults[0][0].Bedingung %>)</span></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].COP > 0){ %>
+										<td><%= queryResults[i][0].COP.toFixed(2) %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr id="scopCompareRow">
+								<th data-i18n="SCOP" scope="row"></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if(queryResults[i][0].SCOP > 0){ %>
+										<td><%= queryResults[i][0].SCOP %></td>
+									<% } else{ %>
+										<td></td>
+									<% } %>
+								<% } %>
+							</tr>
+							<tr>
+								<th data-i18n="Regulated-Power" scope="row" ></th>
+								<% for(var i = 0; i < numHeatPumps; i++){ %>
+									<% if((queryResults[i][0].Bauart != null && (queryResults[i][0].Bauart.indexOf('d') != -1 || queryResults[i][0].Bauart.indexOf('e') != -1)) || queryResults[i][0].Bemerkung != null){ %>
+										<td data-i18n="Yes"></td>
+									<% }else{ %>
+										<td data-i18n="No"></td>
+									<% } %>
+								<% } %>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			<% } %>
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>

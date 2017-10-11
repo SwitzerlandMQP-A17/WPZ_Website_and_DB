@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+		<div class="container mb-3 px-5">
+			<h1 class="display-4">Vergleichstool Anmeldung</h1>
+			<br>
+			<hr>
+
+			<p>Bitte melden Sie sich an:</p>
+
+			<div id="login">
+				<% if(typeof error != 'undefined'){ %>
+					<div class="alert alert-danger"><%= error %></div>
+				<% } %>
+				<form action="/anmelden/auth" method="POST">
+					<div class="form-group row">
+						<label for="inputUsername" class="col-sm-2 col-form-label">Name:</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="username" placeholder="Name">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="inputPassword" class="col-sm-2 col-form-label">Passwort:</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" name="password" placeholder="Passwort">
+						</div>
+					</div>
+					<button id="loginButton" type="submit" class="btn btn-primary">Anmelden <i class="fa fa-caret-right" aria-hidden="true"></i></button>
+				</form>
+			</div>
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>
+

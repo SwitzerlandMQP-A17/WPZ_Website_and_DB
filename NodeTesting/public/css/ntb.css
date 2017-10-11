@@ -1,0 +1,245 @@
+.global-top-spacer {
+display:inline-block;
+width:100%;
+padding-bottom:30px;
+}
+p {
+line-height:1.4em;
+}
+#page-footer .top .footer-nav {
+margin-bottom:0;
+}
+a,a:link,a:visited {
+text-decoration:none;
+}
+a:active,a:focus,a:hover {
+outline:0;
+text-decoration:underline;
+}
+b,strong {
+font-weight:bold;
+}
+hr {
+border-top:1px solid #ccc;
+}
+p {
+line-height:1.35em;
+color:#000;
+margin:0 0 25px 0;
+}
+b,strong {
+font-weight:normal;
+font-family:'ProximaNova-Bold',Helvetica,Arial,sans-serif;
+}
+ul {
+list-style-type:none;
+margin:0 0 20px 0;
+}
+#content {
+min-height:300px;
+}
+body.index #content {
+margin-top:25px;
+}
+#page-footer h2 {
+color:#fff;
+font-family:'ProximaNova-Bold',Helvetica,Arial,sans-serif;
+text-transform:uppercase;
+font-size:18px;
+margin-bottom:25px;
+}
+#page-footer .top {
+background-color:#555;
+padding:40px 0;
+}
+#page-footer .top a,#page-footer .top .institution .link span {
+color:#fff;
+}
+#page-footer .top a:hover,#page-footer .top a:active,#page-footer .top a:focus,#page-footer .top .institution .link span:hover,#page-footer .top .institution .link span:active,#page-footer .top .institution .link span:focus {
+text-decoration:none;
+border-bottom:1px solid #808080;
+}
+#page-footer .top .footer-nav {
+text-align:center;
+margin-bottom:35px;
+}
+#page-footer .top .footer-nav nav > ul > li > a,#page-footer .top .footer-nav nav > ul > li > .institution .link span {
+display:none;
+}
+#page-footer .top .footer-nav nav > ul > li > ul > li {
+margin-bottom:10px;
+}
+#page-footer .top .footer-nav nav > ul > li > ul > li > a,#page-footer .top .footer-nav nav > ul > li > ul > li > .institution .link span {
+font-family:'ProximaNova-Semibold',Helvetica,Arial,sans-serif;
+font-size:15px;
+}
+#page-footer .top .ntb-social {
+text-align:center;
+}
+#page-footer .top .ntb-social ul.social-links {
+display:inline-block;
+}
+#page-footer .top .ntb-social ul.social-links li {
+background:#fff;
+padding:10px 10px 6px 10px;
+float:left;
+margin:0 10px 0 0;
+}
+#page-footer .top .ntb-social ul.social-links li a,#page-footer .top .ntb-social ul.social-links li .institution .link span {
+color:#000;
+font-size:30px;
+}
+#page-footer .top .ntb-social ul.social-links li a:hover,#page-footer .top .ntb-social ul.social-links li a:active,#page-footer .top .ntb-social ul.social-links li a:focus,#page-footer .top .ntb-social ul.social-links li .institution .link span:hover,#page-footer .top .ntb-social ul.social-links li .institution .link span:active,#page-footer .top .ntb-social ul.social-links li .institution .link span:focus {
+border-bottom:none;
+}
+#page-footer .top .ntb-social ul.social-links li:hover {
+background-color:#919292;
+}
+#page-footer .top .ntb-social ul.social-links li:hover a,#page-footer .top .ntb-social ul.social-links li:hover .institution .link span {
+color:#fff;
+}
+#page-footer .top .ntb-social ul.social-links li:hover a:hover,#page-footer .top .ntb-social ul.social-links li:hover .institution .link span:hover {
+text-decoration:none;
+border-bottom:none;
+}
+#page-footer .top .ntb-social ul.social-links li:hover .icon-social-twitter:before {
+color:#55acee;
+}
+#page-footer .top .ntb-social ul.social-links li:hover .icon-social-youtube:before {
+color:#ee0f0f;
+}
+#page-footer .top .ntb-social ul.social-links li:hover .icon-social-facebook:before {
+color:#3b5998;
+}
+#page-footer .bottom {
+text-align:center;
+padding:15px 0;
+}
+#page-footer .bottom a,#page-footer .bottom .institution .link span {
+color:#555;
+}
+#page-footer .bottom a:hover,#page-footer .bottom a:active,#page-footer .bottom a:focus,#page-footer .bottom .institution .link span:hover,#page-footer .bottom .institution .link span:active,#page-footer .bottom .institution .link span:focus {
+text-decoration:none;
+border-bottom:1px solid #ececec;
+}
+#page-footer .bottom ul {
+margin-bottom:15px;
+}
+#page-footer .bottom ul li {
+display:inline-block;
+border-left:1px solid #ececec;
+padding-left:7px;
+margin-left:7px;
+line-height:.9;
+}
+#page-footer .bottom ul li:first-child {
+border-left:none;
+padding-left:0;
+margin-left:0;
+}
+#page-header .wrapper {
+border-bottom:none;
+padding:25px 0 30px;
+}
+#page-header .top .misc-items .lnav > ul > li > a:before,#page-header .top .misc-items .lnav > ul > li > .institution .link span:before {
+display:block;
+position:absolute;
+right:0;
+top:2px;
+font-weight:bold;
+}
+#page-header .top .misc-items .lnav > ul > li .lnav-wrapper {
+margin-right:0;
+}
+.navbar{
+	background-color: #0061a1 !important;
+	font-size: 21px;
+}
+.nav-link{
+	color: #FFF !important;
+}
+.nav-link:hover{
+	background-color: #FFF;
+	color: #000 !important;
+}
+.dropdown-menu{
+	margin-top: 7px;
+	margin-left: 15px;
+}
+.dropdown-item{
+	margin-left: 0 !important;
+}
+#navToggler{
+	color: #EEE;
+	padding: 5px 10px;
+	border: 2px solid #DDD;
+	border-radius: 3px;
+}
+#innerNavWrapper {
+	width: 100%;
+	float: left;
+	padding: 0;
+}
+#innerNavWrapper ul {
+	width: 60%;
+	margin: 0 auto;
+	padding: 0; 
+}
+#innerNavWrapper li a {
+	display: block;
+	padding: 8px 15px;
+	margin: 0px 15px;
+}
+
+@media screen and (max-width:1000px) {
+#innerNavWrapper ul {
+	width: 80%;
+	margin: 0 auto;
+	padding: 0; 
+}
+#innerNavWrapper li a {
+	margin: 0;
+}
+.dropdown-menu{
+	margin-left: 0;
+}
+.display-4{
+	font-size: 8vw !important;
+}
+.unstyled{
+	padding: 0 !important;
+}
+#page-footer h2 {
+font-size:27px;
+}
+#page-footer .top {
+position:relative;
+padding:75px 0 150px;
+}
+#page-footer .top .container {
+position:relative;
+z-index:5;
+}
+#page-footer .top .footer-nav {
+text-align:left;
+}
+#page-footer .top .footer-nav nav > ul > li > a,#page-footer .top .footer-nav nav > ul > li > .institution .link span {
+display:none;
+}
+#page-footer .top .footer-nav nav > ul > li > ul > li > a,#page-footer .top .footer-nav nav > ul > li > ul > li > .institution .link span {
+font-size:16px;
+}
+#page-footer .top .ntb-social {
+text-align:left;
+}
+#page-footer .bottom {
+text-align:left;
+padding:20px 0;
+}
+#page-footer .bottom ul {
+margin-bottom:0;
+}
+#page-footer .bottom .copyright {
+text-align:right;
+}
+}

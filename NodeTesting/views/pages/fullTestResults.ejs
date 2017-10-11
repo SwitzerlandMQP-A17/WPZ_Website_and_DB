@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+		<div class="container mb-3 px-5">
+			<h1 class="display-4">Vergleichstool Wärmepumpen Prüfresultate</h1>
+			<br>
+			<hr>
+			<% if(typeof queryResults[0] == 'undefined' || queryResults[0] == null){ %>
+				<p>Prüfresultate nicht gefunden</p>
+			<% }else{ %>
+			<div class="heatpumpTitle">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm">
+							<span class="customerName"><%= queryResults[0].Auftraggeber %></span>
+							<br>
+							<%= queryResults[0].Geraet %>							
+						</div>
+						<div class="col-sm testNumberCol">
+							<span data-i18n="Test-Number" class="resultTitle"></span>: <%= queryResults[0].Pruefnummer %>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<hr>
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-sm">
+						<div class="mb-2"><span data-i18n="Category" class="resultTitle"></span>: 
+							<span class="descriptionDE"><%= queryResults[0].Kategorie_Bezeichnung_DE %></span>
+							<span class="descriptionEN"><%= queryResults[0].Kategorie_Bezeichnung_EN %></span>
+						</div>
+
+						<% if(queryResults[0].Bauart != null){ %>
+							<div class="mb-2"><span data-i18n="Construction" class="resultTitle"></span>: 
+								<span class="descriptionDE"><%= queryResults[0].Bauart_Bezeichnung_DE %></span>
+								<span class="descriptionEN"><%= queryResults[0].Bauart_Bezeichnung_EN %></span>
+							</div>
+						<% } %>
+
+						<div class="mb-2"><span data-i18n="Heating-Type" class="resultTitle"></span>: 
+							<span class="descriptionDE"><%= queryResults[0].Heizungstyp_Bezeichnung_DE %></span>
+							<span class="descriptionEN"><%= queryResults[0].Heizungstyp_Bezeichnung_EN %></span>
+						</div>
+						<% if((queryResults[0].Bauart != null && (queryResults[0].Bauart.indexOf('d') != -1 || queryResults[0].Bauart.indexOf('e') != -1)) || queryResults[0].Bemerkung != null){ %>
+							<div class="mb-2"><span class="resultTitle" data-i18n="Regulated-Power"></span>: <span data-i18n="Yes"></span></div>
+						<% }else{ %>
+							<div class="mb-2"><span class="resultTitle" data-i18n="Regulated-Power"></span>: <span data-i18n="No"></span></div>
+						<% } %>
+
+						<% if(queryResults[0].Norm != null){ %>
+							<div class="mb-2"><span data-i18n="Standards" class="resultTitle"></span>: <%= queryResults[0].Norm %></div>
+						<% } %>						
+					</div>
+					<div class="col-sm">
+						<% if(queryResults[0].Kaeltemittel_Typ1 != null){ %>
+							<div class="mb-2"><span data-i18n="Refrigerant" class="resultTitle"></span> #1: <%= queryResults[0].Kaeltemittel_Typ1 %></div>
+						<% } %>
+						
+						<% if(queryResults[0].Kaeltemittelmenge_Typ1 != null){ %>
+							<div class="mb-2"><span data-i18n="Refrigerant-Capacity" class="resultTitle"></span> #1: <%= queryResults[0].Kaeltemittelmenge_Typ1 %> (kg)</div>
+						<% } %>
+
+						<% if(queryResults[0].Kaeltemittel_Typ2 != null){ %>
+							<div class="mb-2"><span data-i18n="Refrigerant" class="resultTitle"></span> #2: <%= queryResults[0].Kaeltemittel_Typ2 %></div>
+						<% } %>
+
+						<% if(queryResults[0].Kaeltemittelmenge_Typ2 != null){ %>
+							<div class="mb-2"><span data-i18n="Refrigerant-Capacity" class="resultTitle"></span> #2: <%= queryResults[0].Kaeltemittelmenge_Typ2 %> (kg)</div>
+						<% } %>
+
+						<% if(queryResults[0].Bivalenzpunkt != null){ %>
+							<div class="mb-2"><span data-i18n="Bivalence-Point" class="resultTitle"></span>: <%= queryResults[0].Bivalenzpunkt %></div>
+						<% } %>
+
+						<% if(queryResults[0].Volumenstrom_Standard != null){ %>
+							<div class="mb-2"><span data-i18n="Volume-Flow-Standard" class="resultTitle"></span>: <%= queryResults[0].Volumenstrom_Standard %> (m^3/h)</div>
+						<% } %>
+
+						<% if(queryResults[0].Volumenstrom_V35 != null){ %>
+							<div class="mb-2"><span data-i18n="Volume-Flow-V35" class="resultTitle"></span>: <%= queryResults[0].Volumenstrom_V35 %> (m^3/h)</div>
+						<% } %>
+
+						<% if(queryResults[0].Volumenstrom_V45 != null){ %>
+							<div class="mb-2"><span data-i18n="Volume-Flow-V45" class="resultTitle"></span>: <%= queryResults[0].Volumenstrom_V45 %> (m^3/h)</div>
+						<% } %>
+
+						<% if(queryResults[0].Volumenstrom_V55 != null){ %>
+							<div class="mb-2"><span data-i18n="Volume-Flow-V55" class="resultTitle"></span>: <%= queryResults[0].Volumenstrom_V55 %> (m^3/h)</div>
+						<% } %>
+
+						<% if(queryResults[0].SCOP != null){ %>
+							<div class="mb-2"><span class="resultTitle">SCOP</span>: <%= queryResults[0].SCOP %></div>
+						<% } %>
+
+						<% if(queryResults[0].Schall_Aussen != null){ %>
+							<div class="mb-2"><span data-i18n="Outdoor-Sound" class="resultTitle"></span>: <%= queryResults[0].Schall_Aussen.toFixed(1) %> dB(A)</div>
+						<% } %>
+
+						<% if(queryResults[0].Schall_Aussen_Bedingung != null){ %>
+							<div class="mb-2"><span data-i18n="Outdoor-Sound-Condition" class="resultTitle"></span>: <%= queryResults[0].Schall_Aussen_Bedingung %></div>
+						<% } %>
+
+						<% if(queryResults[0].Schall_Innen != null){ %>
+							<div class="mb-2"><span data-i18n="Indoor-Sound" class="resultTitle"></span>: <%= queryResults[0].Schall_Innen.toFixed(1) %> dB(A)</div>
+						<% } %>
+
+						<% if(queryResults[0].Schall_Innen_Bedingung != null){ %>
+							<div class="mb-2"><span data-i18n="Indoor-Sound-Condition" class="resultTitle"></span>: <%= queryResults[0].Schall_Innen_Bedingung %></div>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		
+			<table class="mt-5 table table-responsive">
+				<thead>
+					<th data-i18n="Condition"></th>
+					<th><span data-i18n="Heat-Capacity"></span> (kW)</th>
+					<th><span data-i18n="Power-Consumption"></span> (kW)</th>
+					<th>COP</th>
+					<th><span data-i18n="Humidity"></span> (%r.h.)</th>
+				</thead>
+				<tbody>
+					<% for(var i = 0; i < queryResultsConditions.length; i++){ %>
+						<tr>
+							<td><%= queryResultsConditions[i].Bedingung %></td>
+							<td><%= queryResultsConditions[i].Heizleistung.toFixed(1) %></td>
+							<td><%= queryResultsConditions[i].Leistungsaufnahme.toFixed(1) %></td>
+							<td><%= queryResultsConditions[i].COP.toFixed(2) %></td>
+							<td><%= queryResultsConditions[i].Luftfeuchtigkeit %></td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+			<% } %>
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>
+

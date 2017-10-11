@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+
+		<script>var COLUMN_NAMES = <%- JSON.stringify(Object.keys(queryResults[0])) %>;</script>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+		<div class="container mb-3">
+			<div class="row">
+				<a href="/instandhaltung" class="btn btn-primary btn-sm"><i class="fa fa-caret-left" aria-hidden="true"></i> Zurück</a>
+			</div>
+			<br>
+			<div class="row mb-3">
+				<h1>Wärmepumpen-Testzentrum Datenbank</h1>
+ 				<div id="tableDataContainer">
+					<table class="table table-hover table-responsive">
+						<thead class="thead-inverse">
+							<tr>
+								<% var keys = Object.keys(queryResults[0]); %>
+								<% for(var i = 0; i < keys.length; i++){ %>
+									<th><%= keys[i] %></th>
+								<% } %>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for(var i = 0; i < queryResults.length; i++) { %>
+								<tr>
+									<% var results = queryResults[i]; %>
+									<% for(var prop in results) { %>
+										<td><%= results[prop] %></td>
+									<% } %>
+									<td><a href="/table/delete/<%= queryResults[i][idColumn] %>"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+									<td><a href="" class="editTable" data-action="/table/edit/details/" data-event="formEdit" data-id="<%= queryResults[i][idColumn] %>" data-operation="Reihe bearbeiten" data-toggle="modal" data-target="#modal"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>			
+								</tr>
+								<% if(i >= 1 && i % 15 === 0){ %>
+								<thead class="thead-default">
+									<tr>
+										<% for(var j = 0; j < keys.length; j++){ %>
+											<th><%= keys[j] %></th>
+										<% } %>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>									
+								<% } %>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<button id="addToTable" class="btn btn-primary" data-event="formAdd" data-operation="Einfügen" data-toggle="modal" data-target="#modal"><i class="fa fa-plus" aria-hidden="true"></i> Einfügen</button>
+		</div>
+
+		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body mx-3">
+						<div id="errors"></div>
+						<form id="modalForm">
+							<div id="formInputContainer" class="form-group row"></div>
+							<div id="formButtonContainer" class="form-group row">
+								<button class="btn btn-primary formSubmitButton">Senden</button>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>

@@ -1,0 +1,126 @@
+.testNumberCol{
+	text-align: right;
+}
+.conditionCompareLabel {
+    font-weight: normal;
+    font-size: 13px;
+}
+#navSideMenusDropdown{
+    left: -110px;
+    top: 15px;
+}
+.lang-switch:hover{
+	text-decoration: underline;
+	color: #eee;
+}
+.lang-switch, #dropdownMenuLinkAdmin{
+	color: #eee;
+}
+.error{
+	color: red;
+}
+.inputError{
+	border: 1px solid red;
+}
+#testInputSuccessAlert, #testInputErrorAlert{
+	display: none;
+}
+.unstyled{
+	text-align: left;
+}
+#navSideMenusWrapper{
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	text-align: right;
+	color: #FFF;
+	font-size: 14px;
+}
+.fa-pencil-square, .fa-times{
+	font-size: 25px !important;
+}
+#tableDataContainer{
+	width: 100%;
+	overflow-x: scroll;
+}
+.float-right{
+	float: right;
+}
+.card-header{
+	font-size: 24px;
+	text-align: center;
+}
+#accordion a{
+	text-decoration: none !important;
+	background-color: #0093d9;
+}
+#accordion a p{
+	color: #EEE;
+}
+#accordion a:hover{
+	background-color: #004470;
+}
+.btn:hover{
+	background-color: #004470 !important;
+}
+.customerAddrList{
+	list-style: initial;
+}
+.customerAddrList li{
+	padding: 0;
+}
+.heatpumpResultContainer{
+	position: relative;
+	background-color: #ddd;
+	padding: 15px;
+	border: 1px solid #555;
+    box-shadow: 1px 1px 3px 1px #aaa;
+    min-height: 300px;
+}
+.heatpumpResult{
+	height: 100%;
+	background-color: #fff;
+    padding: 15px;
+}
+.heatpumpTitle{
+	font-size: 20px;
+}
+.customerName{
+	color: #004470;
+	font-weight: bold;
+}
+.addToCompareContainer{
+	position: absolute;
+	bottom: 20px;
+	text-decoration: none !important;
+}
+.resultTitle{
+	color: #004470;
+	font-weight: 500;
+}
+#disclaimer{
+	text-align: center;
+}
+#disclaimerWrapper{
+	border: 1px solid #ccc;
+    text-align: left;
+    padding: 15px;
+    border-radius: 5px;
+}
+#disclaimerWrapper h3{
+    text-align: center;
+}
+#heatPumpTypeSelectWrapper{
+	border: 1px solid #004470;
+	box-shadow: 0px 0px 3px #0093d9;
+	padding: 15px;
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 18px;
+}
+.hiddenInput{
+	display: none;
+}
+.hide{
+	display: none;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+		<div class="container mb-3 px-3">
+
+			<h1 data-i18n="Website-Title" class="display-4"></h1>
+			<br>
+			<hr>
+			
+			<div id="disclaimer">
+				<div id="disclaimerWrapper">
+					<p data-i18n="Disclaimer"></p>
+				</div>
+
+				<div class="my-3" id="heatPumpTypeSelectWrapper">
+					<label data-i18n="Heat-Pump-Type-Text1" class="mr-sm-2" for="heatpumpTypeInstallerSelect">*Ich möchte eine</label>
+					<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="heatpumpTypeSelect">
+						<option data-i18n="Choose" value=""></option>
+						<option data-i18n="Air/Water" value="1"></option>
+						<option data-i18n="Geothermal" value="2"></option>
+						<option data-i18n="Water/Water" value="3"></option>
+					</select>
+					<span data-i18n="Heat-Pump-Type-Text2"></span>
+				</div>
+			</div>
+
+			<div id="accordion" role="tablist" aria-multiselectable="true" class="<%= accordionState %>">
+				<div class="card mb-2">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						<div class="card-header" role="tab" id="headingOne">
+							<p data-i18n="Installer-Search-Title" class="mb-0"></p>
+						</div>
+					</a>
+					<div id="collapseOne" class="<%= accordionInstallerState %>" role="tabpanel" aria-labelledby="headingOne">
+						<div class="card-block p-3">
+							<div id="installerSearchErrors">
+								<% if(typeof installerErrors !== 'undefined'){ %>
+									<% for(var i = 0; i < installerErrors.length; i++){ %>
+										<div class='alert alert-danger'><%= installerErrors[i].msg %></div>
+									<% } %>
+								<% } %>
+							</div>
+							<div id="installerSearchForm">
+								<form action="/such/installateur" method="POST">
+									<label data-i18n="Installer-Search-Heating-Capacity" for="powerConsumption" class="mb-0"></label>
+									<input name="powerConsumption" class="form-control mb-3" type="text">									
+
+									<div class="hiddenInput"><input id="heatpumpType" name="heatpumpType" type="text" value=""></div> 
+
+									<div class="form-group mb-3">
+										<label data-i18n="Installer-Search-Outside-Temperature" for="outsideTemp" class="mb-0"></label>
+										<select name="outsideTemp" class="form-control">
+											<option data-i18n="Choose" value=""></option>
+											<option value="-5">-5	(Luzern, Neuchâtel)</option>
+											<option value="-6">-6	(Buchs-AG, Interlaken, Sion, Vaduz)</option>
+											<option value="-7">-7	(Basel-Binningen, Bern-Liebefeld, Zürich-Kloten)</option>
+											<option value="-8">-8	(Chur, Disentis, Glarus)</option>
+											<option value="-9">-9   (St. Gallen)</option>
+											<option value="-10">-10 (Adelboden, Zermatt)</option>
+											<option value="-11">-11 (Engelberg, San Bernardino, Schaffhausen)</option>
+											<option value="-12">-12 (Davos)</option>
+										</select>
+									</div>
+
+									<div class="form-group mb-3">
+										<label data-i18n="Installer-Search-Heating-Type" for="heatingTypeSelect" class="mb-0">*Heizungstyp</label>
+										<select name="heatingType" class="form-control">
+											<option data-i18n="Choose" value=""></option>
+											<option data-i18n="Heating-Floor" value="1"></option>
+											<option data-i18n="Heating-Radiator" value="3"></option>
+											<option data-i18n="Heating-Mixed" value="2"></option>
+										</select>
+									</div>
+
+									<button id="installerSearchButton" type="submit" class="btn btn-primary"><span data-i18n="Search"></span> <i class="fa fa-caret-right" aria-hidden="true"></i></button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" role="tab" id="headingTwo">
+							<p data-i18n="Consumption-Search-Title" class="mb-0"></p>
+						</div>
+					</a>
+					<div id="collapseTwo" class="<%= accordionFuelState %>" role="tabpanel" aria-labelledby="headingTwo">
+						<div class="card-block p-3">
+							<div id="fuelSearchErrors">
+								<% if(typeof fuelErrors !== 'undefined'){ %>
+									<% for(var i = 0; i < fuelErrors.length; i++){ %>
+										<div class='alert alert-danger'><%= fuelErrors[i].msg %></div>
+									<% } %>
+								<% } %>
+							</div>
+							<div id="fuelSearchForm">
+								<form action="/such/verbrauchsdaten" method="POST">
+									<div class="hiddenInput"><input id="heatpumpType2" name="heatpumpType" type="text" value=""></div> 
+
+									<div class="form-group">
+										<label data-i18n="Installer-Search-Heating-Type" for="heatingTypeSelect" class="mb-0"></label>
+										<select name="heatingTypeFuel" class="form-control">
+											<option data-i18n="Choose" value=""></option>
+											<option data-i18n="Heating-Floor" value="1"></option>
+											<option data-i18n="Heating-Radiator" value="3"></option>
+											<option data-i18n="Heating-Mixed" value="2"></option>
+										</select>
+									</div>
+
+									<div class="mb-3">
+										<label data-i18n="Consumption-Search-Yearly-Consumption" for="fuelTypeSelect" class="mb-0"></label>
+										<select id="fuelTypeSelect" name="fuelType" class="form-control mr-2">
+											<option data-i18n="Oil" value="oil"></option>
+											<option data-i18n="Gas" value="gasoline"></option>
+											<option data-i18n="Electricity" value="electricity"></option>
+										</select>
+
+										<div class="input-group" id="fuelConsumptionLabelGroup">
+											<input name="fuelConsumption" type="text" class="form-control mt-1 hide" placeholder="*Aufnahme (L)">
+										</div>
+									</div>
+
+									<span data-i18n="Consumption-Search-Previous-Water-Heater"></span>
+									<div class="input-group mb-3">
+										<label class="custom-control custom-radio">
+											<input value="1" id="hotWaterYes" name="hotWater" type="radio" class="custom-control-input">
+											<span class="custom-control-indicator"></span>
+											<span data-i18n="Yes" class="custom-control-description"></span>
+										</label>
+										<label class="custom-control custom-radio">
+											<input value="0" id="hotWaterNo" name="hotWater" type="radio" class="custom-control-input" checked>
+											<span class="custom-control-indicator"></span>
+											<span data-i18n="No" class="custom-control-description"></span>
+										</label>
+									</div>
+
+									<button id="fuelSearchButton" type="submit" class="btn btn-primary"><span data-i18n="Search"></span> <i class="fa fa-caret-right" aria-hidden="true"></i></button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<% include ../partials/head %>
+	</head>
+	<body>
+		<% include ../partials/nav %>
+		<div class="container mb-3">
+			<h1 class="display-4"><span data-i18n="Search-Results-Title"></span> <%= searchTitle %></h1>
+			<br>
+			<hr>
+
+			<% if(isFuelSearch){ %>
+				<p><span data-i18n="Fuel-Search-Note"></span> <%= queryResults[0].CalculatedPower.toFixed(2) %> kW.</p>
+			<% } %>
+			
+			<a href="/"><button class="btn btn-primary mb-3"><i class="fa fa-caret-left" aria-hidden="true"></i> <span data-i18n="New-Search"></span></button></a>
+			
+			<% if(typeof queryResults == 'undefined' || queryResults.length == 0){ %>
+				<p data-i18n="Search-Results-Empty"></p>
+			<% } else { %>
+				<% var iterations = 0 %>
+				<% for(var i = 0; i < queryResults.length; i++){ %>
+					<% if(iterations % 2 === 0){ %>
+					<div class="row">
+					<% } %>
+						<div class="col heatpumpResultContainer mx-2 mb-3">
+							<div class="heatpumpResult">
+								<div class="heatpumpTitle">
+									<span class="customerName"><%= queryResults[i].Auftraggeber %></span>
+									<br>
+									<%= queryResults[i].Geraet %>
+								</div>
+								<hr>
+
+								<div><span class="resultTitle"><span data-i18n="Heat-Cap-And-COP"></span>: </span>(<%= queryResults[i].Bedingung %>)</div>
+								
+								<br>
+								<div class="row">
+									<div class="col">
+										<div><span data-i18n="Heat-Capacity" class="resultTitle"></span><span>: </span><%= queryResults[i].Heizleistung.toFixed(1) %> kW</div>
+										<div><span data-i18n="Refrigerant" class="resultTitle"></span><span>: </span><%= queryResults[i].Kaeltemittel_Typ1 %></div>
+										<% if(queryResults[i].Schall_Aussen > 0){ %>
+											<div class="mb-2"><span data-i18n="Outdoor-Sound" class="resultTitle"></span><span>: </span><%= queryResults[i].Schall_Aussen.toFixed(1) %> dBA</div>
+										<% } %>
+										<div><span data-i18n="Test-Number" class="resultTitle"></span><span>: </span><a target="_blank" href="/pruefresultate/<%= queryResults[i].Pruefnummer %>/<%= queryResults[i].InfoID %>"><%= queryResults[i].Pruefnummer %></a></div>									
+									</div>
+
+									<div class="col-7">
+										<div><span data-i18n="Heating-Type" class="resultTitle"></span><span>: </span>
+											<span class="descriptionDE"><%= queryResults[i].Heizungstyp_Bezeichnung_DE %></span>
+											<span class="descriptionEN"><%= queryResults[i].Heizungstyp_Bezeichnung_EN %></span>
+										</div>
+										
+										<% if(queryResults[i].Bauart != null || queryResults[i].Bemerkung != null){ %>
+											<div><span class="resultTitle" data-i18n="Regulated-Power"></span>: <span data-i18n="Yes"></span></div>
+										<% }else{ %>
+											<div><span class="resultTitle" data-i18n="Regulated-Power"></span>: <span data-i18n="No"></span></div>
+										<% } %>
+
+										<div><span data-i18n="COP" class="resultTitle"></span> : <%= queryResults[i].COP.toFixed(2) %></div>
+									</div>								
+								</div>
+					
+								<br>
+								<hr>
+								<div class="addToCompareContainer">
+									<label class="form-check-label">
+										<% if(typeof compareList !== 'undefined'){ %>
+											<% if(compareList.indexOf(queryResults[i].InfoID.toString()) > -1 ){ %>
+												<input data-id="<%= queryResults[i].InfoID %>" data-bedingungid="<%= queryResults[i].BedingungID %>" class="form-check-input addToCompare" type="checkbox" checked> <span data-i18n="Add-To-Compare"></span>
+											<% } else { %>
+												<input data-id="<%= queryResults[i].InfoID %>" data-bedingungid="<%= queryResults[i].BedingungID %>" class="form-check-input addToCompare" type="checkbox"> <span data-i18n="Add-To-Compare"></span>
+											<% } %>
+										<% } else { %>
+											<input data-id="<%= queryResults[i].InfoID %>" data-bedingungid="<%= queryResults[i].BedingungID %>" class="form-check-input addToCompare" type="checkbox"> <span data-i18n="Add-To-Compare"></span>
+										<% } %>
+									</label>
+								</div>
+							</div>
+						</div>
+						
+					<% if(iterations % 2 == 1){ %>
+					</div>
+					<% } %>
+			
+					<% if(iterations % 2 == 0 && i == (queryResults.length - 1)){ %>
+					</div>
+					<% } %>
+
+					<% iterations++ %>
+				<% } %>
+			<% } %>
+
+		</div>
+
+		<% include ../partials/footer %>
+	</body>
+</html>

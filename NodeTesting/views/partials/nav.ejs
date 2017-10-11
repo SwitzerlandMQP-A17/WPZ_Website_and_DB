@@ -1,0 +1,57 @@
+<header id="page-header">
+  <div class="top">
+      <div class="wrapper">
+          <div class="container">
+              <div class="row">
+                  <div class="col-sm-9">
+                      <a href="/"><img src="/images/logo.svg" alt="NTB"></a>
+                  </div>
+                  <div class="col">
+                      <a href="https://www.ntb.ch/fue/institute/ies/wpz/"><img src="/images/wpzLogo.svg" alt="WPZ" width="250"></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-light">
+          <div id="innerNavWrapper">
+              <i id="navToggler" class="navbar-toggler fa fa-bars" aria-hidden="true" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation"></i>
+              <div class="collapse navbar-collapse" id="navbarToggler">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                      <li class="nav-item"><a data-i18n="Toolbar-Search" class="nav-link" href="/"></a></li>
+                      <li class="nav-item"><a data-i18n="Toolbar-Comparison" class="nav-link" href="/vergleichen"></a></li>
+                      <li class="nav-item"><a data-i18n="Toolbar-Liability" class="nav-link" href="/haftung"></a></li>
+                      <li class="nav-item dropdown">
+                          <a data-i18n="Toolbar-Export" class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <a data-i18n="Air/Water" class="dropdown-item" href="/downloads/NTB_WPZ_LW_Pruef-Resultate.xlsx"></a>
+                              <a data-i18n="Water/Geothermal" class="dropdown-item" href="/downloads/NTB_WPZ_SW&WW-WP_Pruef-Resultate.xlsx"></a>
+                          </div>
+                      </li>
+                      <li class="nav-item"><a data-i18n="Toolbar-ReturnToWPZ" class="nav-link" href="https://www.ntb.ch/fue/institute/ies/wpz/"></a></li>
+                  </ul>
+              </div>
+          </div>
+          <div id="navSideMenusWrapper">
+              <a href="#" class="lang-switch" data-locale="de">De</a> |
+              <a href="#" class="lang-switch" data-locale="en">En</a> |
+              <a href="#" class="lang-switch" data-locale="fr">Fr</a>
+
+              <div class="nav dropdown show dropdown-menu-right">
+                <a href="" class="dropdown-toggle" id="dropdownMenuLinkAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                <div id="navSideMenusDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuLinkAdmin">
+                    <% if(LOGGED_IN){ %>
+                        <a id="logoutButton" class="signInOutButton dropdown-item" href="/abmelden">Abmelden</a>
+                        <a href="/instandhaltung" class="dropdown-item">Instandhaltung</a>
+                        <a href="/pruefresultate" class="dropdown-item">Prüfresultate</a>
+                        <a href="/downloads/NTB_WPZ_Alle_Pruefresultate.xlsx" class="dropdown-item">Alle Prüfresultate</a>
+                    <% } else{ %>
+                        <a id="loginButton" class="dropdown-item" class="signInOutButton" href="/anmelden">Anmelden</a>
+                    <% } %>
+                </div>
+              </div>
+          </div>
+      </nav>
+  </div>
+</header>
+
+<div class="global-top-spacer"></div>
